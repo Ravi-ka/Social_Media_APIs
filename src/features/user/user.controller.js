@@ -66,4 +66,48 @@ export default class UserController {
       });
     }
   }
+
+  async getUserById(req, res) {
+    try {
+      const userID = req.params.userId;
+      const result = await this.userRepository.findById(userID);
+      return res.status(200).json({ result: "success", response: result });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        result: "Error",
+        message: "Something went wrong! Please try again",
+      });
+    }
+  }
+
+  async getAllUsers(req, res) {
+    try {
+      const result = await this.userRepository.getAll();
+      return res.status(200).json(result);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        result: "Error",
+        message: "Something went wrong! Please try again",
+      });
+    }
+  }
+
+  async updateUserDetails(req, res) {
+    try {
+      const userID = req.params.userId;
+      const newUpdate = req.body;
+      const result = await this.userRepository.updateUser(userID, newUpdate);
+      return res
+        .status(200)
+        .json({ result: "User details updated", response: result });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        result: "Error",
+        message: "Something went wrong! Please try again",
+      });
+    }
+  }
 }
