@@ -22,6 +22,6 @@ PostRouter.get("/", jwtAuth, (req, res) => {
 PostRouter.delete("/:postId", jwtAuth, (req, res) => {
   postController.deletePost(req, res);
 });
-PostRouter.put("/:postId", jwtAuth, (req, res) => {
-  postController.updatePost(req, res);
+PostRouter.put("/:postId", jwtAuth, upload.single("imageUrl"), (req, res) => {
+  postController.updatePostById(req, res);
 });
