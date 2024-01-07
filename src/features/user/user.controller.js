@@ -110,4 +110,20 @@ export default class UserController {
       });
     }
   }
+
+  async logout(req, res) {
+    try {
+      const token = req.headers["authorization"];
+      const decodeToken = jwt.decode(token);
+      return res
+        .status(200)
+        .json({ result: "success", response: "Logout successful" });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        result: "Error",
+        message: "Something went wrong! Please try again",
+      });
+    }
+  }
 }
