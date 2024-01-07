@@ -1,20 +1,18 @@
 import mongoose, { Schema } from "mongoose";
-
-export const postSchema = new Schema({
-  imageUrl: {
-    type: String,
-    required: true,
-  },
-  caption: {
+const commentSchema = new Schema({
+  content: {
     type: String,
     required: true,
   },
   userID: {
+    required: true,
     type: mongoose.Types.ObjectId,
-    ref: "users",
+    ref: "Users",
   },
-  comments: {
+  postID: {
     type: mongoose.Types.ObjectId,
-    ref: "Comments",
+    ref: "Posts",
   },
 });
+
+export default commentSchema;
