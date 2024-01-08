@@ -11,7 +11,7 @@ CommentRouter.post("/:postId", jwtAuth, (req, res) => {
 CommentRouter.get("/:postId", jwtAuth, (req, res) => {
   commentController.getComment(req, res);
 });
-CommentRouter.update("/:postId", jwtAuth, (req, res) => {
+CommentRouter.put("/:postId", jwtAuth, (req, res) => {
   commentController.updateComment(req, res);
 });
 CommentRouter.delete("/:postId", jwtAuth, (req, res) => {
