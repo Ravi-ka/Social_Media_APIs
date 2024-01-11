@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import ApplicationError from "../../error-handler/applicationError.js";
 
 var otp = Math.random();
 otp = otp * 1000000;
@@ -40,20 +41,28 @@ export default class OtpController {
       });
     } catch (error) {
       console.log(error);
+      throw new ApplicationError(
+        "Error in sending the password reset email",
+        500
+      );
     }
   }
   async verifyOTP(req, res) {
     try {
       if (req.body.otp === otp) {
-        return res
-          .status(200)
-          .json({ result: "success", response: "OTP is correct" });
+        return res.status(200).json({
+          result: "success",
+          response: "OTP is correct. You are authorized to proceed",
+        });
       } else {
         return res.status(400).json({
           result: "failed",
           response: "OTP is Incorrect, please enter the correct OTP",
         });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      throw new ApplicationError("Error in verifying the OTP", 500);
+    }
   }
 }

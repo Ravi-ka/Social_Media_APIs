@@ -8,6 +8,7 @@ import { UserRouter } from "./src/features/user/user.router.js";
 import { CommentRouter } from "./src/features/comment/comment.router.js";
 import { LikeRouter } from "./src/features/like/like.router.js";
 import { otpRouter } from "./src/features/otp/otp.router.js";
+import { FriendRouter } from "./src/features/friendship/friendship.router.js";
 
 const server = express();
 const port = 8000;
@@ -35,6 +36,8 @@ server.use("/api/comments", CommentRouter);
 server.use("/api/likes", LikeRouter);
 // OTP Route
 server.use("/api/otp", otpRouter);
+// Friendship Route
+server.use("/api/friends", FriendRouter);
 
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
