@@ -14,6 +14,10 @@ const commentSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "Posts",
   },
+  likes: {
+    type: mongoose.Types.ObjectId,
+    ref: "likes",
+  },
 });
 
 export default commentSchema;

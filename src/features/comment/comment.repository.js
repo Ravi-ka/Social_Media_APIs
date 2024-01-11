@@ -68,4 +68,10 @@ export default class CommentRepository {
       throw new ApplicationError("Something went wrong with database", 500);
     }
   }
+
+  async likableComment(id, userID) {
+    try {
+      await commentModel;
+    } catch (error) {}
+  }
 }

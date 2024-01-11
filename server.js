@@ -6,6 +6,8 @@ import { connectToMongoose } from "./src/config/mongoose.connection.js";
 import { PostRouter } from "./src/features/post/post.router.js";
 import { UserRouter } from "./src/features/user/user.router.js";
 import { CommentRouter } from "./src/features/comment/comment.router.js";
+import { LikeRouter } from "./src/features/like/like.router.js";
+import { otpRouter } from "./src/features/otp/otp.router.js";
 
 const server = express();
 const port = 8000;
@@ -29,6 +31,10 @@ server.use("/api/users", UserRouter);
 server.use("/api/posts", PostRouter);
 // Comment Route
 server.use("/api/comments", CommentRouter);
+// Like Route
+server.use("/api/likes", LikeRouter);
+// OTP Route
+server.use("/api/otp", otpRouter);
 
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
