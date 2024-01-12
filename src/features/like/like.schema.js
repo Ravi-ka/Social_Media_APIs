@@ -1,16 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 
 export const likeSchema = new Schema({
-  postID: {
-    type: mongoose.Types.ObjectId,
-    ref: "posts",
-  },
-  commentID: {
-    type: mongoose.Types.ObjectId,
-    ref: "comments",
-  },
-  userID: {
-    type: mongoose.Types.ObjectId,
-    ref: "users",
-  },
+  userID: { type: Schema.Types.ObjectId, ref: "Users", required: true },
+  postID: { type: Schema.Types.ObjectId, ref: "Posts" },
+  comment: { type: Schema.Types.ObjectId, ref: "Comments" },
 });
+
+const Like = mongoose.model("Likes", likeSchema);
+export default Like;
