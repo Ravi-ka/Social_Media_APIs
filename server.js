@@ -9,6 +9,7 @@ import { CommentRouter } from "./src/features/comment/comment.router.js";
 import { LikeRouter } from "./src/features/like/like.router.js";
 import { otpRouter } from "./src/features/otp/otp.router.js";
 import { FriendRouter } from "./src/features/friendship/friendship.router.js";
+import { loggerMiddleware } from "./src/middlewares/logger.middleware.js";
 
 const server = express();
 const port = 8000;
@@ -20,6 +21,9 @@ server.use(
   })
 );
 server.use(bodyParser.json());
+
+// Logger
+server.use(loggerMiddleware);
 
 //Default Route
 server.get("/", (req, res) => {
